@@ -1,4 +1,4 @@
-# Jogo-da-velha-Arduino-CHEESE
+# Jogo-da-velha-Arduino
 
 # briefing
 
