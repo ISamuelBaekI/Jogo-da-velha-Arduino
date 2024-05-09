@@ -1,0 +1,101 @@
+/*#include <iostream>
+#include <sstream>
+#include <String>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+*/
+
+// Matriz para o tabuleiro
+int tabuleiro[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+
+// Função para verificar posição válida
+bool validaPosicao(int linha, int coluna) {
+    return (linha >= 0 && linha < 3 && coluna >= 0 && coluna < 3 && tabuleiro[linha][coluna] == 0);
+}
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Inicialização de variáveis
+    bool haVencedor = false;
+    int jogadorDaVez = 1;
+    int velha = 0;
+
+    // Loop principal do jogo
+    while (!haVencedor && velha < 9) {
+        // Imprime o tabuleiro
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Serial.print(tabuleiro[i][j]);
+            }
+            Serial.println();
+        }
+
+        // Entrada do jogador
+        int linha, coluna;
+        Serial.print("Digite a posição da sua peça jogador ");
+        Serial.println(jogadorDaVez);
+        while (!Serial.available()) {} // Espera pela entrada do usuário
+        linha = Serial.parseInt();
+       
+        while (!Serial.available()) {} // Espera pela entrada do usuário
+        coluna = Serial.parseInt();
+
+        // Verifica se a posição é válida
+        if (validaPosicao(linha, coluna)) {
+            tabuleiro[linha][coluna] = jogadorDaVez;
+            velha++;
+
+            // Verifica se houve vencedor
+            if ((tabuleiro[linha][0] == jogadorDaVez && tabuleiro[linha][1] == jogadorDaVez && tabuleiro[linha][2] == jogadorDaVez) ||
+                (tabuleiro[0][coluna] == jogadorDaVez && tabuleiro[1][coluna] == jogadorDaVez && tabuleiro[2][coluna] == jogadorDaVez) ||
+                (tabuleiro[0][0] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[2][2] == jogadorDaVez) ||
+                (tabuleiro[0][2] == jogadorDaVez && tabuleiro[1][1] == jogadorDaVez && tabuleiro[2][0] == jogadorDaVez)) {
+                haVencedor = true;
+            }
+
+            // Troca o jogador
+            jogadorDaVez = (jogadorDaVez == 1) ? 2 : 1;
+        } else {
+            Serial.println("Posição ocupada ou invalida, jogue novamente ");
+          
+        
+        }
+    }
+
+    // Imprime o resultado do jogo
+    if (haVencedor) {
+        Serial.print("Parabéns, jogador ");
+        Serial.print(jogadorDaVez == 1 ? 2 : 1);
+        Serial.println(", você venceu!");
+    } else {
+        Serial.println("Deu velha!");
+    }
+
+    // Limpa o tabuleiro para um novo jogo
+   Serial.println("Novo jogo");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
+}
+
+/*// The following implements type conversion functions.
+String toString (double value) { //int also
+    stringstream temp;
+    temp << value;
+    return temp.str();
+}
+
+int toInt (String text) {
+    return atoi(text.c_str());
+}
+
+double toDouble (String text) {
+    return atof(text.c_str());
+}
+*/
