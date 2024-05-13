@@ -6,7 +6,7 @@
 olá, bom dia? boa noite? boa tarde???  sou do sesi/senai 436 e esse é um projeto desenvolvido em sala de aula  junto ao professor com objetivo de criar um jogo da velha com a linguagem de programação do arduino. ◑﹏◐
 
 ### Contextualização:
-O projeto é criar um jogo da velha funcional com sistema de vencedor e enpate todo feito em arduino.ψ(._. )>
+O projeto é criar um jogo da velha funcional com sistema de vencedor e empate todo feito em arduino.ψ(._. )>
 
 
 ### Necessidades e expectativas:
